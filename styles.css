@@ -126,26 +126,26 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .nav-toggle{ display:none; background:none; border:none; cursor:pointer; flex-direction:column; gap:5px; padding:6px; }
 .nav-toggle span{ width:24px; height:2.5px; background: var(--navy); border-radius:2px; }
 
-/* ===== Hero ===== */
+/* ===== Hero (foto real de fondo) ===== */
 .hero{
-  background: radial-gradient(circle at 80% 20%, #eaf1f9 0%, var(--bg) 55%);
-  padding: 70px 0 60px;
+  position:relative;
+  background-image:
+    linear-gradient(100deg, rgba(6,16,34,0.92) 0%, rgba(8,22,45,0.82) 38%, rgba(8,22,45,0.55) 62%, rgba(8,22,45,0.35) 100%),
+    url('assets/bg-hero.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  padding: 110px 0 120px;
   overflow:hidden;
 }
-.hero-grid{
-  display:grid; grid-template-columns: 1.05fr 0.95fr; gap:40px; align-items:center;
-}
+.hero-grid{ display:block; }
+.hero-copy{ max-width:640px; }
+.hero-copy h1{ color:#fff; }
+.hero-copy .eyebrow{ color: var(--silver); }
 .hero-copy .tagline{
-  font-weight:700; letter-spacing:2px; color: var(--steel); margin:14px 0 18px; font-size:0.95rem;
+  font-weight:700; letter-spacing:2px; color: var(--silver); margin:14px 0 18px; font-size:0.95rem;
 }
-.hero-desc{ color: var(--muted); max-width:520px; margin-bottom:30px; font-size:1.02rem; }
+.hero-desc{ color: rgba(255,255,255,0.82); max-width:520px; margin-bottom:30px; font-size:1.02rem; }
 .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
-.hero-art{ display:flex; justify-content:center; }
-.hero-photo{
-  width:100%; max-width:560px; aspect-ratio: 4/3.1; object-fit:cover;
-  border-radius: var(--radius-lg);
-  box-shadow: 0 20px 45px rgba(11,31,63,0.25);
-}
 
 /* ===== Trust strip ===== */
 .trust-strip{
@@ -170,48 +170,44 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .trust-item h3{ font-size:1rem; margin-bottom:6px; }
 .trust-item p{ color: var(--muted); font-size:0.9rem; }
 
-/* ===== Distro (dark section) ===== */
+/* ===== Distro (foto real de fondo — pipeta) ===== */
 .distro{
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 55%, var(--blue) 130%);
-  color:#fff;
-  padding:80px 0;
-}
-.distro-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:50px; align-items:center; }
-.distro h2{ color:#fff; margin-bottom:18px; }
-.distro-copy > p{ color: var(--silver-light); max-width:520px; margin-bottom:28px; }
-.distro-features{
-  display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:40px;
-  padding-top:30px; border-top:1px solid rgba(255,255,255,0.15);
-}
-.distro-features h4{ color:#fff; font-size:0.92rem; margin-bottom:6px; }
-.distro-features p{ color: var(--silver); font-size:0.85rem; }
-.art-frame{
-  aspect-ratio: 4/5; border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, #dfe8f2 0%, #7c93ac 45%, #0b1f3f 100%);
-  box-shadow: var(--shadow);
   position:relative;
-  overflow:hidden;
-}
-.art-frame--distro{
   background-image:
-    linear-gradient(180deg, rgba(11,31,63,0.05), rgba(11,31,63,0.35)),
+    linear-gradient(100deg, rgba(6,16,34,0.94) 0%, rgba(8,22,45,0.85) 42%, rgba(8,22,45,0.55) 68%, rgba(8,22,45,0.3) 100%),
     url('assets/bg-distro.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
+  color:#fff;
+  padding:100px 0;
 }
-.art-frame--light{
+.distro-grid{ display:block; }
+.distro-copy{ max-width:640px; }
+.distro h2{ color:#fff; margin-bottom:18px; }
+.distro-copy > p{ color: rgba(255,255,255,0.85); max-width:520px; margin-bottom:28px; }
+.distro-features{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:40px;
+  padding-top:30px; border-top:1px solid rgba(255,255,255,0.2);
+}
+.distro-features h4{ color:#fff; font-size:0.92rem; margin-bottom:6px; }
+.distro-features p{ color: rgba(255,255,255,0.75); font-size:0.85rem; }
+
+/* ===== About / Nosotros (foto real de fondo — ADN) ===== */
+.about{
+  position:relative;
   background-image:
-    linear-gradient(180deg, rgba(11,31,63,0.05), rgba(11,31,63,0.25)),
+    linear-gradient(100deg, rgba(6,16,34,0.93) 0%, rgba(8,22,45,0.8) 45%, rgba(8,22,45,0.45) 75%, rgba(8,22,45,0.2) 100%),
     url('assets/bg-about.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center 30%;
+  padding:100px 0;
 }
-
-/* ===== About / Nosotros ===== */
-.about{ padding:80px 0; background: var(--bg); }
-.about-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:50px; align-items:center; }
-.about-copy p{ color: var(--muted); margin-bottom:16px; max-width:560px; }
-.about-copy h2{ margin-bottom:18px; }
+.about-grid{ display:block; }
+.about-copy{ max-width:640px; }
+.about-copy h2{ color:#fff; margin-bottom:18px; }
+.about-copy p{ color: rgba(255,255,255,0.85); margin-bottom:16px; max-width:560px; }
+.link-arrow-light{ color:#8fc3ff; }
+.link-arrow-light:hover{ color:#fff; }
 
 /* ===== Quality ===== */
 .quality{ padding:80px 0; background: var(--bg-alt); }
@@ -310,9 +306,10 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 
 /* ===== Responsive ===== */
 @media (max-width: 980px){
-  .hero-grid, .distro-grid, .about-grid, .contact-grid, .distribution-map{ grid-template-columns: 1fr; }
-  .about-art, .distro-art{ order:-1; max-width:420px; margin:0 auto; }
+  .contact-grid, .distribution-map{ grid-template-columns: 1fr; }
   .trust-grid{ grid-template-columns: repeat(2,1fr); }
+  .hero{ padding:80px 0 70px; background-position: 65% center; }
+  .distro, .about{ padding:70px 0; background-position: 60% center; }
   .quality-grid{ grid-template-columns: 1fr; }
   .distro-features{ grid-template-columns: 1fr; }
   .main-nav{ display:none; }
