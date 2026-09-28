@@ -107,11 +107,11 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 }
 .header-inner{
   display:flex; align-items:center; justify-content:space-between;
-  padding:12px 24px;
+  padding:8px 24px;
   gap:20px;
 }
 .brand{ display:flex; align-items:center; flex-shrink:0; }
-.brand-logo{ height:52px; width:auto; object-fit:contain; }
+.brand-logo{ height:74px; width:auto; object-fit:contain; }
 .main-nav{ display:flex; gap:30px; flex:1; justify-content:center; }
 .main-nav a{
   font-weight:600; font-size:0.92rem; color: var(--navy);
@@ -130,7 +130,7 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .hero{
   position:relative;
   background-image:
-    linear-gradient(100deg, rgba(6,16,34,0.92) 0%, rgba(8,22,45,0.82) 38%, rgba(8,22,45,0.55) 62%, rgba(8,22,45,0.35) 100%),
+    linear-gradient(100deg, rgba(6,16,34,0.32) 0%, rgba(8,22,45,0.22) 45%, rgba(8,22,45,0.12) 100%),
     url('assets/bg-hero.jpg');
   background-size: cover;
   background-position: center 35%;
@@ -140,6 +140,15 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .hero-grid{ display:block; }
 .hero-copy{ max-width:640px; }
 .hero-copy h1{ color:#fff; }
+.text-panel{
+  background: rgba(7,18,38,0.58);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+}
 .hero-copy .eyebrow{ color: var(--silver); }
 .hero-copy .tagline{
   font-weight:700; letter-spacing:2px; color: var(--silver); margin:14px 0 18px; font-size:0.95rem;
@@ -174,7 +183,7 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .distro{
   position:relative;
   background-image:
-    linear-gradient(100deg, rgba(6,16,34,0.94) 0%, rgba(8,22,45,0.85) 42%, rgba(8,22,45,0.55) 68%, rgba(8,22,45,0.3) 100%),
+    linear-gradient(100deg, rgba(6,16,34,0.3) 0%, rgba(8,22,45,0.2) 45%, rgba(8,22,45,0.1) 100%),
     url('assets/bg-distro.jpg');
   background-size: cover;
   background-position: center 40%;
@@ -196,7 +205,7 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 .about{
   position:relative;
   background-image:
-    linear-gradient(100deg, rgba(6,16,34,0.93) 0%, rgba(8,22,45,0.8) 45%, rgba(8,22,45,0.45) 75%, rgba(8,22,45,0.2) 100%),
+    linear-gradient(100deg, rgba(6,16,34,0.3) 0%, rgba(8,22,45,0.2) 50%, rgba(8,22,45,0.1) 100%),
     url('assets/bg-about.jpg');
   background-size: cover;
   background-position: center 30%;
@@ -276,9 +285,9 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
   padding:30px 24px; border-top:1px solid rgba(255,255,255,0.08);
 }
 .brand-footer{
-  background:#fff; padding:8px 14px; border-radius:10px; display:inline-flex;
+  background:#fff; padding:10px 16px; border-radius:10px; display:inline-flex;
 }
-.brand-logo--footer{ height:36px; }
+.brand-logo--footer{ height:50px; }
 .footer-nav{ display:flex; gap:24px; flex-wrap:wrap; }
 .footer-nav a{ color: var(--silver-light); font-size:0.88rem; font-weight:600; }
 .footer-nav a:hover{ color:#fff; }
@@ -322,6 +331,7 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 }
 @media (max-width: 600px){
   .hero{ padding:50px 0 40px; }
+  .text-panel{ padding:24px 22px; }
   .hero-actions, .contact-mini-grid, .map-countries{ grid-template-columns: 1fr; display:flex; flex-direction:column; }
   .map-countries{ display:grid; grid-template-columns:1fr; }
   .contact-mini-grid{ display:grid; grid-template-columns:1fr; }
