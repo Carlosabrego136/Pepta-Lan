@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 600" fill="none">
+  <defs>
+    <linearGradient id="helixMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfe8f2"/>
+      <stop offset="0.5" stop-color="#3d6ea5"/>
+      <stop offset="1" stop-color="#0f2444"/>
+    </linearGradient>
+    <linearGradient id="vialGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef4fb"/>
+      <stop offset="1" stop-color="#c3d3e6"/>
+    </linearGradient>
+    <linearGradient id="capBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3f7fc9"/>
+      <stop offset="1" stop-color="#0f2444"/>
+    </linearGradient>
+    <linearGradient id="capSilver" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2f5f9"/>
+      <stop offset="1" stop-color="#94a6bb"/>
+    </linearGradient>
+  </defs>
+
+  <!-- DNA helix backdrop -->
+  <g opacity="0.9">
+    <path d="M540 20 C 460 90, 620 160, 540 230 C 460 300, 620 370, 540 440" stroke="url(#helixMetal)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M600 20 C 680 90, 520 160, 600 230 C 680 300, 520 370, 600 440" stroke="url(#helixMetal)" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <g stroke="url(#helixMetal)" stroke-width="6" stroke-linecap="round">
+      <line x1="546" y1="45" x2="594" y2="45"/>
+      <line x1="524" y1="90" x2="616" y2="90"/>
+      <line x1="546" y1="135" x2="594" y2="135"/>
+      <line x1="524" y1="185" x2="616" y2="185"/>
+      <line x1="546" y1="230" x2="594" y2="230"/>
+      <line x1="524" y1="275" x2="616" y2="275"/>
+      <line x1="546" y1="320" x2="594" y2="320"/>
+      <line x1="524" y1="370" x2="616" y2="370"/>
+      <line x1="546" y1="415" x2="594" y2="415"/>
+    </g>
+    <circle cx="546" cy="45" r="6" fill="#7ea8d8"/>
+    <circle cx="594" cy="45" r="6" fill="#7ea8d8"/>
+    <circle cx="524" cy="90" r="6" fill="#b9c9dc"/>
+    <circle cx="616" cy="90" r="6" fill="#b9c9dc"/>
+    <circle cx="546" cy="230" r="6" fill="#7ea8d8"/>
+    <circle cx="594" cy="230" r="6" fill="#7ea8d8"/>
+    <circle cx="524" cy="320" r="6" fill="#b9c9dc"/>
+    <circle cx="616" cy="320" r="6" fill="#b9c9dc"/>
+  </g>
+
+  <!-- Vials -->
+  <g transform="translate(60,300)">
+    <!-- vial 1 -->
+    <g transform="translate(0,0)">
+      <rect x="10" y="40" width="70" height="160" rx="10" fill="url(#vialGlass)" stroke="#9fb3c8" stroke-width="2"/>
+      <rect x="18" y="90" width="54" height="70" rx="4" fill="#ffffff" stroke="#d7e1ec" stroke-width="1"/>
+      <rect x="0" y="10" width="90" height="34" rx="8" fill="url(#capBlue)"/>
+      <text x="45" y="115" font-family="Arial, sans-serif" font-size="9" fill="#0f2444" text-anchor="middle" font-weight="700">PEPTARA</text>
+      <text x="45" y="128" font-family="Arial, sans-serif" font-size="7" fill="#3d6ea5" text-anchor="middle">LABS</text>
+      <text x="45" y="145" font-family="Arial, sans-serif" font-size="6.5" fill="#54606f" text-anchor="middle">RESEARCH ONLY</text>
+    </g>
+    <!-- vial 2 -->
+    <g transform="translate(110,-20)">
+      <rect x="10" y="40" width="70" height="160" rx="10" fill="url(#vialGlass)" stroke="#9fb3c8" stroke-width="2"/>
+      <rect x="18" y="90" width="54" height="70" rx="4" fill="#ffffff" stroke="#d7e1ec" stroke-width="1"/>
+      <rect x="0" y="10" width="90" height="34" rx="8" fill="url(#capSilver)"/>
+      <text x="45" y="115" font-family="Arial, sans-serif" font-size="9" fill="#0f2444" text-anchor="middle" font-weight="700">PEPTARA</text>
+      <text x="45" y="128" font-family="Arial, sans-serif" font-size="7" fill="#3d6ea5" text-anchor="middle">LABS</text>
+      <text x="45" y="145" font-family="Arial, sans-serif" font-size="6.5" fill="#54606f" text-anchor="middle">RESEARCH ONLY</text>
+    </g>
+    <!-- vial 3 -->
+    <g transform="translate(220,10)">
+      <rect x="10" y="40" width="70" height="160" rx="10" fill="url(#vialGlass)" stroke="#9fb3c8" stroke-width="2"/>
+      <rect x="18" y="90" width="54" height="70" rx="4" fill="#ffffff" stroke="#d7e1ec" stroke-width="1"/>
+      <rect x="0" y="10" width="90" height="34" rx="8" fill="url(#capBlue)"/>
+      <text x="45" y="115" font-family="Arial, sans-serif" font-size="9" fill="#0f2444" text-anchor="middle" font-weight="700">PEPTARA</text>
+      <text x="45" y="128" font-family="Arial, sans-serif" font-size="7" fill="#3d6ea5" text-anchor="middle">LABS</text>
+      <text x="45" y="145" font-family="Arial, sans-serif" font-size="6.5" fill="#54606f" text-anchor="middle">RESEARCH ONLY</text>
+    </g>
+  </g>
+</svg>
