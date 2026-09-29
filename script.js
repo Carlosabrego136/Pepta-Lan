@@ -53,7 +53,7 @@ function buildProductsMarquee() {
     card.appendChild(img);
 
     const cta = document.createElement("a");
-    cta.href = buildWaLink(`Hola, quiero información sobre ${product.name} de Peptara Labs.`);
+    cta.href = buildWaLink("Hola, me gustaría conocer los precios y el catálogo de Peptara Labs.");
     cta.target = "_blank";
     cta.rel = "noopener";
     cta.className = "btn btn-outline btn-block";

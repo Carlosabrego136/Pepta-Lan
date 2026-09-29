@@ -158,6 +158,17 @@
 
 <!-- ===== CALIDAD ===== -->
 <section class="quality" id="calidad">
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="pep-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="2" result="noise"/>
+      <feComponentTransfer in="noise" result="fadedNoise">
+        <feFuncA type="linear" slope="0.06"/>
+      </feComponentTransfer>
+      <feComposite in="fadedNoise" in2="SourceGraphic" operator="in" result="grain"/>
+      <feBlend in="SourceGraphic" in2="grain" mode="overlay"/>
+    </filter>
+  </svg>
+  <span class="quality-watermark" aria-hidden="true">Calidad</span>
   <div class="container">
     <p class="eyebrow" style="text-align:center">Calidad</p>
     <h2 class="section-title-center">Respaldo técnico en cada lote</h2>
