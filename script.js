@@ -68,6 +68,22 @@ function buildProductsMarquee() {
   mask.appendChild(fade);
 }
 
+// Video de fondo (HLS/Mux) de la sección Productos
+function initProductsBgVideo() {
+  const video = document.querySelector(".products-bg-video");
+  if (!video) return;
+  const src = "https://stream.mux.com/E3rAKyTB54G02a702jKVDAsRnWoRXwUss6mjjctaODp8w.m3u8";
+
+  if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    // Safari soporta HLS nativo
+    video.src = src;
+  } else if (window.Hls && window.Hls.isSupported()) {
+    const hls = new window.Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Botones genéricos de WhatsApp
   const genericLink = buildWaLink(GENERIC_MSG);
@@ -88,6 +104,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Construye el marquee 3D de productos con sus botones de WhatsApp
   buildProductsMarquee();
+
+  // Inicia el video de fondo de la sección Productos
+  initProductsBgVideo();
 
   // Menú móvil
   const navToggle = document.getElementById("navToggle");
