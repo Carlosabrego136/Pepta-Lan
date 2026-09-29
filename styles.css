@@ -221,8 +221,8 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 /* ===== Products ===== */
 .products{ padding:80px 0; background: var(--bg-alt); }
 .products-intro{
-  text-align:center; color: var(--muted); max-width:640px; margin:0 auto 50px;
-  font-size:0.98rem;
+  text-align:center; color: var(--navy); max-width:720px; margin:0 auto 50px;
+  font-size:1.2rem; font-weight:600; line-height:1.55;
 }
 /* ---- Marquee 3D de productos ---- */
 :root{
@@ -294,10 +294,35 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
   margin-top:50px; display:flex; flex-direction:column; align-items:center; gap:20px; text-align:center;
 }
 .delivery-badge{
-  display:inline-block; background:#fff; border:1px solid rgba(11,31,63,0.1);
-  border-radius:999px; padding:10px 20px; font-size:0.85rem; color: var(--navy); font-weight:600;
-  box-shadow: var(--shadow-soft);
+  display:inline-flex; align-items:center; gap:12px;
+  background: linear-gradient(135deg, #eef5ff 0%, #dfeaf9 100%);
+  border:1px solid rgba(63,127,201,0.25);
+  border-radius:999px; padding:12px 26px 12px 14px; font-size:0.98rem; color: var(--navy); font-weight:700;
+  box-shadow: 0 10px 24px rgba(11,31,63,0.12);
 }
+.delivery-badge img{ width:34px; height:auto; flex-shrink:0; }
+.delivery-badge strong{ color: var(--blue); }
+
+/* ---- Bloques de "Tiempo de entrega" destacados (Distribución y Contacto) ---- */
+.feature-delivery{
+  display:flex; align-items:center; gap:14px;
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.25) !important;
+  border-radius: var(--radius); padding:16px 18px;
+}
+.feature-delivery img{ width:36px; height:auto; flex-shrink:0; }
+.feature-delivery h4{ color:#fff !important; font-size:1rem !important; font-weight:700; margin-bottom:2px !important; }
+.feature-delivery p{ color:#fff !important; font-size:0.92rem !important; font-weight:600; }
+
+.mini-delivery{
+  display:flex; align-items:center; gap:12px;
+  background: linear-gradient(135deg, #eef5ff 0%, #dfeaf9 100%);
+  border-radius: var(--radius); padding:14px 16px;
+  border:1px solid rgba(63,127,201,0.2);
+}
+.mini-delivery img{ width:30px; height:auto; flex-shrink:0; }
+.mini-delivery h4{ color: var(--navy) !important; font-weight:700 !important; }
+.mini-delivery p{ color: var(--blue) !important; font-weight:700 !important; }
 
 /* ===== Quality ===== */
 .quality{ padding:80px 0; background: var(--bg-alt); }
