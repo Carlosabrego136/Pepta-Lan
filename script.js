@@ -74,13 +74,38 @@ function initProductsBgVideo() {
   if (!video) return;
   const src = "https://stream.mux.com/E3rAKyTB54G02a702jKVDAsRnWoRXwUss6mjjctaODp8w.m3u8";
 
+  // Refuerza mute/inline vía JS: algunos navegadores móviles (iOS/Android)
+  // ignoran el autoplay si estos flags no están también como propiedades del elemento.
+  video.muted = true;
+  video.defaultMuted = true;
+  video.setAttribute("muted", "");
+  video.playsInline = true;
+
+  const tryPlay = () => {
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {
+        // Autoplay bloqueado (algunos navegadores móviles): reintenta al primer toque.
+        const resume = () => {
+          video.play().catch(() => {});
+          document.removeEventListener("touchstart", resume);
+          document.removeEventListener("click", resume);
+        };
+        document.addEventListener("touchstart", resume, { once: true, passive: true });
+        document.addEventListener("click", resume, { once: true });
+      });
+    }
+  };
+
   if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    // Safari soporta HLS nativo
+    // Safari (incluido iOS) soporta HLS nativo
     video.src = src;
+    video.addEventListener("loadedmetadata", tryPlay, { once: true });
   } else if (window.Hls && window.Hls.isSupported()) {
     const hls = new window.Hls();
     hls.loadSource(src);
     hls.attachMedia(video);
+    hls.on(window.Hls.Events.MANIFEST_PARSED, tryPlay);
   }
 }
 
