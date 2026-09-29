@@ -10,6 +10,64 @@ function buildWaLink(message) {
 // Mensaje genérico para los botones "Cotizar por WhatsApp" / flotante / "Escríbenos"
 const GENERIC_MSG = "Hola, vengo de la página de Peptara Labs y quiero más información.";
 
+// Productos para el marquee de la sección "Productos"
+const PRODUCTS = [
+  { name: "Tirzepatide", img: "assets/products/tirzepatide.jpg" },
+  { name: "Retatrutide", img: "assets/products/retatrutide.jpg" },
+  { name: "Cagrilintide", img: "assets/products/cagrilintide.jpg" },
+  { name: "Cagrilintide + Semaglutide", img: "assets/products/cagrilintide-semaglutide.jpg" },
+  { name: "BPC-157", img: "assets/products/bpc-157.jpg" },
+  { name: "TB-500", img: "assets/products/tb-500.jpg" },
+  { name: "GHK-Cu", img: "assets/products/ghk-cu.jpg" },
+  { name: "Glutatión", img: "assets/products/glutation.jpg" },
+  { name: "Ipamorelin", img: "assets/products/ipamorelin.jpg" },
+  { name: "CJC-1295", img: "assets/products/cjc-1295.jpg" },
+  { name: "Melanotan II", img: "assets/products/melanotan-ii.jpg" },
+  { name: "Selank", img: "assets/products/selank.jpg" },
+];
+
+function buildProductsMarquee() {
+  const mask = document.getElementById("productsMarquee");
+  if (!mask) return;
+
+  const fade = document.createElement("div");
+  fade.className = "products-marquee-fade";
+
+  const track = document.createElement("div");
+  track.className = "products-marquee-track";
+
+  // Se duplica la lista para que el loop sea continuo y sin cortes
+  const allProducts = [...PRODUCTS, ...PRODUCTS];
+
+  allProducts.forEach((product) => {
+    const wrap = document.createElement("div");
+    wrap.className = "product-marquee-wrap";
+
+    const card = document.createElement("div");
+    card.className = "product-marquee-card";
+
+    const img = document.createElement("img");
+    img.src = product.img;
+    img.alt = `${product.name} - Peptara Labs`;
+    img.loading = "lazy";
+    card.appendChild(img);
+
+    const cta = document.createElement("a");
+    cta.href = buildWaLink(`Hola, quiero información sobre ${product.name} de Peptara Labs.`);
+    cta.target = "_blank";
+    cta.rel = "noopener";
+    cta.className = "btn btn-outline btn-block";
+    cta.textContent = "Consultar disponibilidad";
+    card.appendChild(cta);
+
+    wrap.appendChild(card);
+    track.appendChild(wrap);
+  });
+
+  fade.appendChild(track);
+  mask.appendChild(fade);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Botones genéricos de WhatsApp
   const genericLink = buildWaLink(GENERIC_MSG);
@@ -28,10 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
     el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
   });
 
-  // Botones "Consultar disponibilidad" de cada producto
-  document.querySelectorAll(".wa-product").forEach((el) => {
-    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
-  });
+  // Construye el marquee 3D de productos con sus botones de WhatsApp
+  buildProductsMarquee();
 
   // Menú móvil
   const navToggle = document.getElementById("navToggle");
