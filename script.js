@@ -18,8 +18,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el) el.href = genericLink;
   });
 
+  // Botón "Ver catálogo completo por WhatsApp"
+  const CATALOG_MSG = "Hola, quiero conocer el catálogo completo de péptidos de Peptara Labs.";
+  const waProductsMoreBtn = document.getElementById("waProductsMoreBtn");
+  if (waProductsMoreBtn) waProductsMoreBtn.href = buildWaLink(CATALOG_MSG);
+
   // Botones "Contactar México" / "Contactar EE. UU."
   document.querySelectorAll(".wa-country").forEach((el) => {
+    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
+  });
+
+  // Botones "Consultar disponibilidad" de cada producto
+  document.querySelectorAll(".wa-product").forEach((el) => {
     el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
   });
 
