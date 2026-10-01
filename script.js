@@ -1,10 +1,12 @@
 // ===== Peptara Labs — site script =====
 // Número de WhatsApp del negocio (521 313 109 5135) en formato internacional sin espacios/símbolos
 const WHATSAPP_NUMBER = "5213131095135";
+// Número de WhatsApp para distribución en Estados Unidos (+1 323 329-7436)
+const WHATSAPP_US_NUMBER = "13233297436";
 
-function buildWaLink(message) {
+function buildWaLink(message, number = WHATSAPP_NUMBER) {
   const text = encodeURIComponent(message);
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  return `https://wa.me/${number}?text=${text}`;
 }
 
 // Mensaje genérico para los botones "Cotizar por WhatsApp" / flotante / "Escríbenos"
@@ -122,10 +124,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const waProductsMoreBtn = document.getElementById("waProductsMoreBtn");
   if (waProductsMoreBtn) waProductsMoreBtn.href = buildWaLink(CATALOG_MSG);
 
-  // Botones "Contactar México" / "Contactar EE. UU."
+  // Botón "Contactar México" (usa el WhatsApp principal de México)
   document.querySelectorAll(".wa-country").forEach((el) => {
     el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
   });
+
+  // Botón "Contactar EE. UU." (usa el WhatsApp principal de Estados Unidos)
+  const waUSBtn = document.getElementById("waUSBtn");
+  if (waUSBtn) {
+    waUSBtn.href = buildWaLink(waUSBtn.dataset.msg || GENERIC_MSG, WHATSAPP_US_NUMBER);
+  }
 
   // Construye el marquee 3D de productos con sus botones de WhatsApp
   buildProductsMarquee();

@@ -434,6 +434,13 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
 }
 .country-card h4{ color:#fff; margin-bottom:8px; }
 .country-card p{ color: var(--silver); font-size:0.85rem; margin-bottom:14px; }
+.country-secondary{
+  margin-top:10px !important; margin-bottom:0 !important;
+  padding-top:12px; border-top:1px solid rgba(255,255,255,0.12);
+  font-size:0.8rem !important; color: rgba(255,255,255,0.55) !important;
+}
+.country-secondary a{ color: var(--silver-light); font-weight:600; text-decoration:none; }
+.country-secondary a:hover{ text-decoration:underline; }
 
 /* ===== Footer ===== */
 .site-footer{ background: var(--navy); color:#fff; }
