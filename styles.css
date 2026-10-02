@@ -390,6 +390,62 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
   max-width:640px; margin-left:auto; margin-right:auto; position:relative; z-index:2;
 }
 
+/* ===== Certificados de Análisis (COA) ===== */
+.coa{ padding:90px 0; background: var(--bg); }
+.coa-intro{
+  text-align:center; color: var(--muted); max-width:680px; margin:0 auto 50px;
+  font-size:1rem; line-height:1.6;
+}
+.coa-grid{
+  display:grid; grid-template-columns: repeat(4, 1fr); gap:22px;
+}
+.coa-card{
+  background:#fff; border:1px solid rgba(11,31,63,0.08); border-radius: var(--radius);
+  overflow:hidden; cursor:pointer; text-align:left;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.35s cubic-bezier(.2,.7,.2,1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.coa-card:hover, .coa-card:focus-visible{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: rgba(31,95,168,0.3);
+  outline: none;
+}
+.coa-thumb{
+  aspect-ratio: 3/4; overflow:hidden; background: var(--bg-alt);
+  border-bottom:1px solid rgba(11,31,63,0.08);
+}
+.coa-thumb img{ width:100%; height:100%; object-fit:cover; object-position: top center; display:block; }
+.coa-info{ padding:14px 16px 18px; }
+.coa-info h4{ font-size:0.92rem; margin-bottom:6px; }
+.coa-purity{
+  display:inline-block; font-size:0.76rem; font-weight:700; color:#1f8f5b;
+  background: rgba(31,143,91,0.1); padding:4px 10px; border-radius:999px;
+}
+.coa-footnote{
+  text-align:center; margin-top:46px; color: var(--muted); font-size:0.82rem;
+  max-width:640px; margin-left:auto; margin-right:auto;
+}
+.coa-footnote a{ color: var(--blue); font-weight:600; }
+
+.coa-lightbox{
+  position:fixed; inset:0; z-index:999; display:none;
+  background: rgba(5,11,20,0.88); backdrop-filter: blur(4px);
+  align-items:center; justify-content:center; padding:40px 20px;
+}
+.coa-lightbox.open{ display:flex; }
+.coa-lightbox-inner{ max-width:520px; width:100%; text-align:center; }
+.coa-lightbox-inner img{
+  width:100%; border-radius: var(--radius-lg); box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+}
+.coa-lightbox-inner p{ color:#fff; margin-top:16px; font-size:0.9rem; opacity:0.85; }
+.coa-lightbox-close{
+  position:absolute; top:24px; right:28px; background: rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.25); color:#fff; width:40px; height:40px;
+  border-radius:50%; font-size:1.1rem; cursor:pointer; transition: background .2s ease;
+}
+.coa-lightbox-close:hover{ background: rgba(255,255,255,0.22); }
+
 /* ===== Contact ===== */
 .contact{ padding:80px 0 0; background: var(--bg); }
 .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:50px; align-items:start; margin-bottom:70px; }
@@ -497,6 +553,7 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
   .hero{ padding:80px 0 70px; background-position: 65% center; }
   .distro, .about{ padding:70px 0; background-position: 60% center; }
   .quality-grid{ grid-template-columns: 1fr; }
+  .coa-grid{ grid-template-columns: repeat(2,1fr); }
   .distro-features{ grid-template-columns: 1fr; }
   .contact-mini-grid{ grid-template-columns: repeat(2,1fr); }
   :root{ --pm-tilt: -4deg; --pm-overlap: 40px; --pm-hover-push: 20px; --pm-card-w: 140px; }
@@ -515,4 +572,5 @@ h4{ font-size: 1rem; font-family: var(--font-body); font-weight:700; color: var(
   .map-countries{ display:grid; grid-template-columns:1fr; }
   .contact-mini-grid{ display:grid; grid-template-columns:1fr; }
   :root{ --pm-tilt: -3deg; --pm-overlap: 26px; --pm-hover-push: 12px; --pm-card-w: 108px; }
+  .coa-grid{ grid-template-columns: repeat(2,1fr); gap:14px; }
 }

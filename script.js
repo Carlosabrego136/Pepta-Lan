@@ -1,8 +1,8 @@
 // ===== Peptara Labs — site script =====
 // Número de WhatsApp del negocio (521 313 109 5135) en formato internacional sin espacios/símbolos
 const WHATSAPP_NUMBER = "5213131095135";
-// Número de WhatsApp para distribución en Estados Unidos (+1 323 329-7436)
-const WHATSAPP_US_NUMBER = "13233297436";
+// Número de WhatsApp para distribución en México y Estados Unidos (+1 323 329-7436)
+const WHATSAPP_DISTRIBUTION_NUMBER = "13233297436";
 
 function buildWaLink(message, number = WHATSAPP_NUMBER) {
   const text = encodeURIComponent(message);
@@ -111,6 +111,51 @@ function initProductsBgVideo() {
   }
 }
 
+// Lightbox de certificados de análisis (sección "Certificados")
+function initCoaLightbox() {
+  const lightbox = document.getElementById("coaLightbox");
+  const lightboxImg = document.getElementById("coaLightboxImg");
+  const lightboxCaption = document.getElementById("coaLightboxCaption");
+  const closeBtn = document.getElementById("coaLightboxClose");
+  if (!lightbox || !lightboxImg || !closeBtn) return;
+
+  const openLightbox = (card) => {
+    const img = card.dataset.img;
+    const name = card.dataset.name || "";
+    const batch = card.dataset.batch ? ` · Lote ${card.dataset.batch}` : "";
+    if (!img) return;
+    lightboxImg.src = img;
+    lightboxImg.alt = `Certificado de análisis ${name}`;
+    lightboxCaption.textContent = `${name}${batch}`;
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden", "false");
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.src = "";
+  };
+
+  document.querySelectorAll(".coa-card").forEach((card) => {
+    card.addEventListener("click", () => openLightbox(card));
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(card);
+      }
+    });
+  });
+
+  closeBtn.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   // Botones genéricos de WhatsApp
   const genericLink = buildWaLink(GENERIC_MSG);
@@ -124,15 +169,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const waProductsMoreBtn = document.getElementById("waProductsMoreBtn");
   if (waProductsMoreBtn) waProductsMoreBtn.href = buildWaLink(CATALOG_MSG);
 
-  // Botón "Contactar México" (usa el WhatsApp principal de México)
+  // Botones "Contactar México" / "Contactar EE. UU." y los números visibles de cada tarjeta
+  // (mismo número de WhatsApp de distribución para ambos países: +1 323 329-7436)
   document.querySelectorAll(".wa-country").forEach((el) => {
-    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG);
+    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
+  });
+  document.querySelectorAll(".wa-country-number").forEach((el) => {
+    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
   });
 
-  // Botón "Contactar EE. UU." (usa el WhatsApp principal de Estados Unidos)
   const waUSBtn = document.getElementById("waUSBtn");
   if (waUSBtn) {
-    waUSBtn.href = buildWaLink(waUSBtn.dataset.msg || GENERIC_MSG, WHATSAPP_US_NUMBER);
+    waUSBtn.href = buildWaLink(waUSBtn.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
   }
 
   // Construye el marquee 3D de productos con sus botones de WhatsApp
@@ -140,6 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Inicia el video de fondo de la sección Productos
   initProductsBgVideo();
+
+  // Lightbox de certificados de análisis (COA)
+  initCoaLightbox();
 
   // Menú móvil
   const navToggle = document.getElementById("navToggle");
