@@ -74,7 +74,7 @@ function buildProductsMarquee() {
 function initProductsBgVideo() {
   const video = document.querySelector(".products-bg-video");
   if (!video) return;
-  const src = "https://stream.mux.com/E3rAKyTB54G02a702jKVDAsRnWoRXwUss6mjjctaODp8w.m3u8";
+  const src = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260815_040604_c609907a-7447-45a8-b636-0cfb102d9617.mp4";
 
   // Refuerza mute/inline vía JS: algunos navegadores móviles (iOS/Android)
   // ignoran el autoplay si estos flags no están también como propiedades del elemento.
@@ -99,16 +99,8 @@ function initProductsBgVideo() {
     }
   };
 
-  if (video.canPlayType("application/vnd.apple.mpegurl")) {
-    // Safari (incluido iOS) soporta HLS nativo
-    video.src = src;
-    video.addEventListener("loadedmetadata", tryPlay, { once: true });
-  } else if (window.Hls && window.Hls.isSupported()) {
-    const hls = new window.Hls();
-    hls.loadSource(src);
-    hls.attachMedia(video);
-    hls.on(window.Hls.Events.MANIFEST_PARSED, tryPlay);
-  }
+  video.src = src;
+  video.addEventListener("loadedmetadata", tryPlay, { once: true });
 }
 
 // Lightbox de certificados de análisis (sección "Certificados")
