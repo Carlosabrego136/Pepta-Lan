@@ -1,8 +1,8 @@
 // ===== Peptara Labs — site script =====
-// Número de WhatsApp del negocio (521 313 109 5135) en formato internacional sin espacios/símbolos
-const WHATSAPP_NUMBER = "5213131095135";
-// Número de WhatsApp para distribución en México y Estados Unidos (+1 323 329-7436)
-const WHATSAPP_DISTRIBUTION_NUMBER = "13233297436";
+// Número de WhatsApp principal del negocio (+1 323 329-7436) en formato internacional sin espacios/símbolos
+const WHATSAPP_NUMBER = "13233297436";
+// Número de WhatsApp secundario, usado en las tarjetas de distribución México/EE. UU. (521 313 109 5135)
+const WHATSAPP_DISTRIBUTION_NUMBER = "5213131095135";
 
 function buildWaLink(message, number = WHATSAPP_NUMBER) {
   const text = encodeURIComponent(message);
