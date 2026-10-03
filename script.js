@@ -9,8 +9,8 @@ function buildWaLink(message, number = WHATSAPP_NUMBER) {
   return `https://wa.me/${number}?text=${text}`;
 }
 
-// Mensaje genérico para los botones "Cotizar por WhatsApp" / flotante / "Escríbenos"
-const GENERIC_MSG = "Hola, vengo de la página de Peptara Labs y quiero más información.";
+// Mensaje base por defecto si algún botón .wa-trigger no trae data-wa-msg
+const DEFAULT_WA_MSG = "Vengo de la página de Peptara Labs y quiero más información.";
 
 // Productos para el marquee de la sección "Productos"
 const PRODUCTS = [
@@ -55,10 +55,9 @@ function buildProductsMarquee() {
     card.appendChild(img);
 
     const cta = document.createElement("a");
-    cta.href = buildWaLink("Hola, me gustaría conocer los precios y el catálogo de Peptara Labs.");
-    cta.target = "_blank";
-    cta.rel = "noopener";
-    cta.className = "btn btn-outline btn-block";
+    cta.href = "#";
+    cta.className = "btn btn-outline btn-block wa-trigger";
+    cta.dataset.waMsg = "Me gustaría conocer los precios y el catálogo de Peptara Labs.";
     cta.textContent = "Consultar disponibilidad";
     card.appendChild(cta);
 
@@ -148,35 +147,79 @@ function initCoaLightbox() {
   });
 }
 
+// Modal que pide el nombre antes de abrir WhatsApp, para todos los botones .wa-trigger
+function initWaModal() {
+  const modal = document.getElementById("waModal");
+  const form = document.getElementById("waModalForm");
+  const input = document.getElementById("waModalName");
+  const closeBtn = document.getElementById("waModalClose");
+  if (!modal || !form || !input || !closeBtn) return;
+
+  let pending = null; // { msg, number, lang }
+
+  const openModal = (trigger) => {
+    pending = {
+      msg: trigger.dataset.waMsg || DEFAULT_WA_MSG,
+      number: trigger.dataset.waNumber || WHATSAPP_NUMBER,
+      lang: trigger.dataset.waLang === "en" ? "en" : "es",
+    };
+    input.value = "";
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    setTimeout(() => input.focus(), 50);
+  };
+
+  const closeModal = () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+    pending = null;
+  };
+
+  document.querySelectorAll(".wa-trigger").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(el);
+    });
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!pending) return;
+    const name = input.value.trim();
+    if (!name) {
+      input.focus();
+      return;
+    }
+    const finalMessage =
+      pending.lang === "en"
+        ? `Hello, my name is ${name}. ${pending.msg}`
+        : `Hola, mi nombre es ${name}. ${pending.msg}`;
+    window.open(buildWaLink(finalMessage, pending.number), "_blank", "noopener");
+    closeModal();
+  });
+
+  closeBtn.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("open")) closeModal();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  // Botones genéricos de WhatsApp
-  const genericLink = buildWaLink(GENERIC_MSG);
-  ["waHeaderBtn", "waContactBtn", "waFloat"].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.href = genericLink;
-  });
-
-  // Botón "Ver catálogo completo por WhatsApp"
-  const CATALOG_MSG = "Hola, quiero conocer el catálogo completo de péptidos de Peptara Labs.";
-  const waProductsMoreBtn = document.getElementById("waProductsMoreBtn");
-  if (waProductsMoreBtn) waProductsMoreBtn.href = buildWaLink(CATALOG_MSG);
-
   // Botones "Contactar México" / "Contactar EE. UU." y los números visibles de cada tarjeta
-  // (mismo número de WhatsApp de distribución para ambos países: +1 323 329-7436)
-  document.querySelectorAll(".wa-country").forEach((el) => {
-    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
+  // usan el número de WhatsApp secundario (+52 1 313 109 5135). El mensaje final (con nombre)
+  // lo arma el modal de WhatsApp (ver initWaModal) a partir de data-wa-msg / data-wa-lang.
+  document.querySelectorAll(".wa-country, .wa-country-number, #waUSBtn").forEach((el) => {
+    el.dataset.waNumber = WHATSAPP_DISTRIBUTION_NUMBER;
   });
-  document.querySelectorAll(".wa-country-number").forEach((el) => {
-    el.href = buildWaLink(el.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
-  });
-
-  const waUSBtn = document.getElementById("waUSBtn");
-  if (waUSBtn) {
-    waUSBtn.href = buildWaLink(waUSBtn.dataset.msg || GENERIC_MSG, WHATSAPP_DISTRIBUTION_NUMBER);
-  }
 
   // Construye el marquee 3D de productos con sus botones de WhatsApp
   buildProductsMarquee();
+
+  // Modal que pide el nombre antes de abrir WhatsApp (aplica a todos los botones .wa-trigger)
+  initWaModal();
 
   // Inicia el video de fondo de la sección Productos
   initProductsBgVideo();

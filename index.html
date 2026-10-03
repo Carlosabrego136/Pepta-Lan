@@ -28,7 +28,7 @@
       <a href="#certificados">Certificados</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn btn-whatsapp header-cta" id="waHeaderBtn" target="_blank" rel="noopener">
+    <a href="#" class="btn btn-whatsapp header-cta wa-trigger" id="waHeaderBtn" data-wa-msg="Vengo de la página de Peptara Labs y quiero más información.">
       <img src="assets/whatsapp.svg" alt="" class="wa-icon"> Cotizar por WhatsApp
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
@@ -151,7 +151,7 @@
   <div class="container">
     <div class="products-footnote">
       <span class="delivery-badge"><img src="assets/icon-delivery.png" alt="Entrega"> Tiempo estimado de entrega: <strong>8–12 días</strong> aproximadamente después del envío.</span>
-      <a href="#" id="waProductsMoreBtn" target="_blank" rel="noopener" class="btn btn-whatsapp">
+      <a href="#" id="waProductsMoreBtn" class="btn btn-whatsapp wa-trigger" data-wa-msg="Quiero conocer el catálogo completo de péptidos de Peptara Labs.">
         <img src="assets/whatsapp.svg" alt="" class="wa-icon"> Ver catálogo completo por WhatsApp
       </a>
     </div>
@@ -278,6 +278,22 @@
   </div>
 </div>
 
+<!-- Modal: pide el nombre antes de abrir WhatsApp -->
+<div class="wa-modal" id="waModal" aria-hidden="true">
+  <div class="wa-modal-inner">
+    <button type="button" class="wa-modal-close" id="waModalClose" aria-label="Cerrar">✕</button>
+    <img src="assets/whatsapp.svg" alt="" class="wa-modal-icon">
+    <h3>Antes de continuar</h3>
+    <p class="wa-modal-sub">Dinos tu nombre para personalizar tu mensaje de WhatsApp.</p>
+    <form id="waModalForm">
+      <input type="text" id="waModalName" class="wa-modal-input" placeholder="Tu nombre" autocomplete="name" required>
+      <button type="submit" class="btn btn-whatsapp btn-block">
+        <img src="assets/whatsapp.svg" alt="" class="wa-icon"> Continuar a WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
 <!-- ===== CONTACTO ===== -->
 <section class="contact" id="contacto">
   <div class="container contact-grid">
@@ -286,11 +302,12 @@
       <h2>Estamos listos<br>para atenderte</h2>
       <p>Contáctanos para conocer disponibilidad, condiciones de distribución, compras al mayoreo o resolver tus dudas.</p>
       <div class="contact-btns">
-        <a href="#" id="waContactBtn" target="_blank" rel="noopener" class="btn btn-whatsapp btn-block">
+        <a href="#" id="waContactBtn" class="btn btn-whatsapp btn-block wa-trigger" data-wa-msg="Vengo de la página de Peptara Labs y quiero más información.">
           <img src="assets/whatsapp.svg" alt="" class="wa-icon"> Escríbenos por WhatsApp
         </a>
         <a href="mailto:peptaralabsmx@gmail.com" class="btn btn-outline btn-block">✉ Envíanos un correo</a>
       </div>
+      <p class="contact-phone">Tel: <a href="tel:+14088375226">+1 (408) 837-5226</a></p>
       <div class="contact-mini-grid">
         <div><h4>Atención personalizada</h4><p>Te asesoramos según tus necesidades.</p></div>
         <div><h4>Información comercial</h4><p>Distribuidores, mayoristas y negocios.</p></div>
@@ -338,14 +355,16 @@
       <div class="country-card">
         <h4>🇲🇽 México</h4>
         <p>Distribución nacional y atención a distribuidores, mayoristas y negocios.</p>
-        <a href="#" class="link-arrow wa-country" data-msg="Hola, soy de México y quiero información sobre distribución de Peptara Labs.">Contactar México →</a>
-        <p class="country-secondary">WhatsApp: <a href="#" class="wa-country-number" data-msg="Hola, soy de México y quiero información sobre distribución de Peptara Labs.">+52 1 313 109 5135</a></p>
+        <a href="#" class="link-arrow wa-country wa-trigger" data-wa-msg="Soy de México y quiero información sobre distribución de Peptara Labs.">Contactar México →</a>
+        <p class="country-secondary">WhatsApp: <a href="#" class="wa-country-number wa-trigger" data-wa-msg="Soy de México y quiero información sobre distribución de Peptara Labs.">+52 1 313 109 5135</a></p>
+        <p class="country-secondary">Tel: <a href="tel:+14088375226">+1 (408) 837-5226</a></p>
       </div>
       <div class="country-card">
         <h4>🇺🇸 Estados Unidos</h4>
         <p>Información sobre disponibilidad y condiciones de distribución.</p>
-        <a href="#" id="waUSBtn" class="link-arrow" data-msg="Hello, I'm contacting from the United States about Peptara Labs distribution.">Contactar EE. UU. →</a>
-        <p class="country-secondary">WhatsApp: <a href="#" class="wa-country-number" data-msg="Hello, I'm contacting from the United States about Peptara Labs distribution.">+52 1 313 109 5135</a></p>
+        <a href="#" id="waUSBtn" class="link-arrow wa-trigger" data-wa-msg="I'm contacting from the United States about Peptara Labs distribution." data-wa-lang="en">Contactar EE. UU. →</a>
+        <p class="country-secondary">WhatsApp: <a href="#" class="wa-country-number wa-trigger" data-wa-msg="I'm contacting from the United States about Peptara Labs distribution." data-wa-lang="en">+52 1 313 109 5135</a></p>
+        <p class="country-secondary">Tel: <a href="tel:+14088375226">+1 (408) 837-5226</a></p>
       </div>
     </div>
   </div>
@@ -377,6 +396,7 @@
         <img src="assets/icon-gmail.png" alt="Gmail">
       </a>
     </div>
+    <p class="footer-phone">Tel: <a href="tel:+14088375226">+1 (408) 837-5226</a></p>
   </div>
   <div class="footer-bottom">
     <div class="container">
@@ -386,7 +406,7 @@
 </footer>
 
 <!-- Floating WhatsApp button -->
-<a href="#" id="waFloat" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp">
+<a href="#" id="waFloat" class="wa-float wa-trigger" aria-label="Escríbenos por WhatsApp" data-wa-msg="Vengo de la página de Peptara Labs y quiero más información.">
   <img src="assets/whatsapp.svg" alt="">
 </a>
 
